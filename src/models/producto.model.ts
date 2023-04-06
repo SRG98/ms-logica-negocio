@@ -1,6 +1,6 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
-import {Venta} from './venta.model';
+import {Entity, hasMany, model, property} from '@loopback/repository';
 import {VentaProducto} from './venta-producto.model';
+import {Venta} from './venta.model';
 
 @model()
 export class Producto extends Entity {
@@ -28,6 +28,12 @@ export class Producto extends Entity {
     required: true,
   })
   cantidadDisponible: number;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  foto: string;
 
   @hasMany(() => Venta, {through: {model: () => VentaProducto}})
   ventas: Venta[];

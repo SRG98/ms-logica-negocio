@@ -3,7 +3,19 @@ import {Cliente} from './cliente.model';
 import {Producto} from './producto.model';
 import {VentaProducto} from './venta-producto.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys:
+    {
+      fk_venta_idCliente: {
+        name: "fk_venta_idCliente",
+        entity: "Cliente",
+        entityKey: "id",
+        foreignKey: "clienteId"
+      }
+    }
+  }
+})
 export class Venta extends Entity {
   @property({
     type: 'number',
@@ -20,13 +32,13 @@ export class Venta extends Entity {
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   foto: string;
 
   @property({
     type: 'number',
-    required: false,
+    required: true,
   })
   precioVenta: number;
 
